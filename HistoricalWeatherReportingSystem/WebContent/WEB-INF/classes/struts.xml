@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.custom.i18n.resources" value="messageResource"/>
+    <constant name="struts.i18n.encoding" value="utf-8"/>
+    <constant name="struts.ui.theme" value="xhtml"/> 
+    <package name="hrms" namespace="/" extends="struts-default">
+        <global-results>
+            <result name="error">error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+    </package>
+    <package name="user" namespace="/user" extends="hrms" >
+        <action name="login" class="loginAction" method="execute">
+            <result name="success">listTable.jsp</result>
+            <result name="error">userTable.jsp</result>
+        </action>
+    </package>
+    <!-- <package name="reportJson" namespace="/report/json" extends="json-default">
+        <action name="testJson" class="testAction">
+            <result type="json" name="dataTable">todayTable.jsp</result>
+            <result type="json" name="pieChart">todayTable.jsp</result>
+        </action>
+        <action name="productUser" class="productUserAction">
+            <result type="json" name="dataTable">todayTable.jsp</result>
+            <result type="json" name="pieChart">source-sign.jsp</result>
+        </action>
+    </package> -->
+</struts>

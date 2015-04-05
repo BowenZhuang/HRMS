@@ -1,0 +1,16 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="userDao" class="com.groupTen.dao.UserDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="userService" class="com.groupTen.service.UserService">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
+	<bean id="loginAction" class="com.groupTen.action.LoginAction">
+		<property name="userService" ref="userService"/>	
+	</bean>
+</beans>

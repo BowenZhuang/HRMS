@@ -1,0 +1,85 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	<bean id="loginAction" class="java.com.groupTen.action.LoginAction" scope="prototype">
+		<property name="userService" ref="userService" />
+	</bean>
+	<bean id="userSerivce" class="java.com.groupTen.service.UserService">
+	   <property name="userDao" ref="userDao" />
+	</bean>
+	<bean id="userDao" class="java.com.groupTen.dao.UserDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!--  
+	<bean id="reportDao" class="com.renren.acorn.web.dao.ReportQueryJDBCImpl">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="reportService" class="com.renren.acorn.web.service.ReportModelImpl">
+		<property name="reportDao" ref="reportDao" />
+	</bean> 
+	<bean id="reportAction" class="com.renren.acorn.web.action.ReportAction">
+		<property name="reportModel" ref="reportService"/>	
+	</bean>
+	
+	
+	<bean id="productService" class="com.renren.acorn.web.service.ProductService">
+		<property name="reportDao" ref="reportDao"/>	
+	</bean>
+	<bean id="controller" class="com.renren.acorn.web.action.ControllerAction" scope="prototype">
+		<property name="productService" ref="productService"/>	
+	</bean> 
+	<bean id="exportDao" class="com.renren.acorn.web.export.dao.ExportDataDaoImpl">
+	   <property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="exportAllFlowAction" class="com.renren.acorn.web.export.action.ExportAllFlowAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="exportAllFlowCheckCountAction" class="com.renren.acorn.web.export.action.ExportAllFlowCheckCountAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="exportAllFlowProductCheckCountAction" class="com.renren.acorn.web.export.action.ExportAllFlowProductCheckCountAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="exportAllFlowProductAction" class="com.renren.acorn.web.export.action.ExportAllFlowProductAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="exportAllFlowReferCheckCountAction" class="com.renren.acorn.web.export.action.ExportAllFlowReferCheckCountAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="exportAllFlowReferAction" class="com.renren.acorn.web.export.action.ExportAllFlowReferAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="findAttrValueAction" class="com.renren.acorn.web.export.action.FindAttrValueAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	
+	<bean id="exportUserAttrAnalysisCheckCountAction" class="com.renren.acorn.web.export.action.ExportUserAttrAnalysisCheckCountAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="exportUserAttrAnalysisAction" class="com.renren.acorn.web.export.action.ExportUserAttrAnalysisAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="exportUserAnalysisProductAnalysisCheckCountAction" class="com.renren.acorn.web.export.action.ExportUserAnalysisProductAnalysisCheckCountAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>
+	<bean id="exportUserAnalysisProductAnalysisAction" class="com.renren.acorn.web.export.action.ExportUserAnalysisProductAnalysisAction">
+	    <property name="exportAllFlowSerivce" ref="exportDataSerivce" />
+	</bean>-->
+	
+	<!--导出数据service -->
+	<!--导出全站流量service  -->
+	<!-- <bean id="exportDataSerivce" class=" com.renren.acorn.web.export.service.ExportDataService">
+	   <property name="exportDao" ref="exportDao" />
+	   <property name="exportDomain" ref="exportDomain" />
+	</bean>
+	<bean id="exportDomain" class=" com.renren.acorn.web.export.service.ExportDomain">
+	   <property name="exportExcelService" ref="exportExcelService" />
+	   <property name="exportCsvService" ref="exportCsvService" />
+	</bean>
+	
+	<bean id="exportExcelService" class=" com.renren.acorn.web.export.service.ExportExcelDataService">
+	</bean>
+	<bean id="exportCsvService" class=" com.renren.acorn.web.export.service.ExportCsvDataService">
+	</bean>-->
+</beans>
