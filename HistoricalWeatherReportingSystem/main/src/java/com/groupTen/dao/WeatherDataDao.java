@@ -39,5 +39,33 @@ public class WeatherDataDao extends JdbcDaoSupport {
 				
 	            
 	        } );
+	}
+	
+	public List<Weather> findByUserId(int userId) {
+		String sql = "SELECT * FROM weather WHERE UserID = " + userId;
+		 
+		List<Weather> weathers = new ArrayList<Weather>();
+	
+		List<Map> rows = getJdbcTemplate().queryForList(sql);
+		for (Map row : rows) {
+			Weather weather = new Weather();
+			
+			weather.setUserID((int)row.get("UserID"));
+			weather.setState((String)row.get("stateName"));
+			weather.setYear((int)row.get("Year"));
+			weather.setMonth((int)row.get("Month"));
+			weather.setCDD((int)row.get("CDD"));
+			weather.setHDD((int)row.get("HDD"));
+			weather.setPCP((float)row.get("PCP"));
+			weather.setTMIN((float)row.get("TMIN"));
+			weather.setTMAX((float)row.get("TMAX"));
+			weather.setTAVG((float)row.get("TAVG"));
+			
+			weathers.add(weather);
+		}
+		
+		return weathers;
+		// TODO Auto-generated method stub
+		
 	} 
 }
