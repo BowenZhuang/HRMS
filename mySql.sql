@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS `user`(
 CREATE TABLE IF NOT EXISTS `weather`(
 	`UserID` int REFERENCES `user` (`ID`), 
     `StateCode` int REFERENCES `state`(`ID`),	#ranges 001-465
-	`Division` int,		# 0 indicates area-averaged data
     `Year` int,			
 	`Month` int,
 	`CDD` int,		# cooling days
