@@ -16,11 +16,17 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<bean id="weatherDao" class="com.groupTen.dao.WeatherDataDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
 	<bean id="weatherImportService" class="com.groupTen.service.WeatherImportService">
 		<property name="weatherDao" ref="weatherDao" />
 	</bean>
-	 
+	 <bean id="getDataService" class="com.groupTen.service.GetDataService">
+		<property name="weatherDao" ref="weatherDao" />
+	</bean>
 	<bean id="importDataAction" class="com.groupTen.action.ImportDataAction">
 		<property name="importService" ref="weatherImportService"/>	   
+	</bean>
+	<bean id="jsonAction" class="com.groupTen.action.JsonAction">
+		<property name="dataService" ref="getDataService"/>	   
 	</bean>
 </beans>

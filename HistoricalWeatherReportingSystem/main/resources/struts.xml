@@ -25,6 +25,11 @@
             <result name="error">userTable.jsp</result>
         </action>
     </package>
+    <package name="reportJson" namespace="/json" extends="json-default">
+        <action name="getJson" class="jsonAction">
+            <result type="json" /> 
+        </action>
+     </package>
     <!-- <package name="reportJson" namespace="/report/json" extends="json-default">
         <action name="testJson" class="testAction">
             <result type="json" name="dataTable">todayTable.jsp</result>
