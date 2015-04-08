@@ -4,14 +4,14 @@ public class Weather {
 	private String StateCode;
 	private int Year;
 	private  int Month;
-	private double PCP;
-	private double TAVG;
-	private double TMIN;
-	private double TMAX;
+	private float PCP;
+	private float TAVG;
+	private float TMIN;
+	private float TMAX;
 	private int  CDD;
 	private int  HDD;
 	
-	public Weather(String stateCode, int year, int month, double pcp, double tavg, double tmin, double tmax, int cdd, int hdd)
+	public Weather(String stateCode, int year, int month, float pcp, float tavg, float tmin, float tmax, int cdd, int hdd)
 	{
 		this.StateCode = stateCode;
 		this.Year = year;
@@ -52,7 +52,7 @@ public class Weather {
 		return PCP;
 	}
 
-	public void setPCP(double pCP) {
+	public void setPCP(float pCP) {
 		PCP = pCP;
 	}
 
@@ -60,7 +60,7 @@ public class Weather {
 		return TAVG;
 	}
 
-	public void setTAVG(double tAVG) {
+	public void setTAVG(float tAVG) {
 		TAVG = tAVG;
 	}
 
@@ -68,7 +68,7 @@ public class Weather {
 		return TMIN;
 	}
 
-	public void setTMIN(double tMIN) {
+	public void setTMIN(float tMIN) {
 		TMIN = tMIN;
 	}
 
@@ -76,7 +76,7 @@ public class Weather {
 		return TMAX;
 	}
 
-	public void setTMAX(double tMAX) {
+	public void setTMAX(float tMAX) {
 		TMAX = tMAX;
 	}
 

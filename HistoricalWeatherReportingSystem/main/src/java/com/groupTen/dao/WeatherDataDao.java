@@ -2,7 +2,10 @@ package com.groupTen.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -42,16 +45,15 @@ public class WeatherDataDao extends JdbcDaoSupport {
 	}
 	
 	public List<Weather> findByUserId(int userId) {
-		String sql = "SELECT * FROM weather WHERE UserID = " + userId;
-		 
+				
+		String sql = "SELECT UserID, s.stateName, `Year`,`Month`,CDD, HDD,PCP,TMIN,TMAX, TAVG FROM weather JOIN state s ON s.`ID` = weather.stateCode AND UserID = " + userId;
 		List<Weather> weathers = new ArrayList<Weather>();
 	
 		List<Map> rows = getJdbcTemplate().queryForList(sql);
 		for (Map row : rows) {
 			Weather weather = new Weather();
 			
-			weather.setUserID((int)row.get("UserID"));
-			weather.setState((String)row.get("stateName"));
+			weather.setStateCode((String)row.get("stateName"));
 			weather.setYear((int)row.get("Year"));
 			weather.setMonth((int)row.get("Month"));
 			weather.setCDD((int)row.get("CDD"));
@@ -67,5 +69,5 @@ public class WeatherDataDao extends JdbcDaoSupport {
 		return weathers;
 		// TODO Auto-generated method stub
 		
-	} 
+	}
 }

@@ -57,11 +57,11 @@ public class CsvReader {
 							 {
 								 String strPCP = nextLine[i];
 								 strPCP = ReplaceWhiteSpace(strPCP);
-								 Double dPCP = Double.parseDouble(strPCP);
-								 dPCP = dPCP * 25.4;
+								 Float dPCP = Float.parseFloat(strPCP);
+								 dPCP = (Float)(dPCP * 25.4f);
 								 
 								 DecimalFormat newFormat = new DecimalFormat("#.#");
-								 dPCP =  Double.valueOf(newFormat.format(dPCP));
+								 dPCP =  Float.valueOf(newFormat.format(dPCP));
 								 
 								 wTemp.setPCP(dPCP);
 							 }
@@ -83,7 +83,7 @@ public class CsvReader {
 							 {
 								 String strAVG = nextLine[i];
 								 strAVG = ReplaceWhiteSpace(strAVG);
-								 Double dAVG = Double.parseDouble(strAVG);
+								 Float dAVG = Float.parseFloat(strAVG);
 								 dAVG = ConvertFTOC(dAVG);
 								 
 								 wTemp.setTAVG(dAVG);
@@ -93,7 +93,7 @@ public class CsvReader {
 							 {
 								 String strMIN = nextLine[i];
 								 strMIN = ReplaceWhiteSpace(strMIN);
-								 Double dMIN = Double.parseDouble(strMIN);
+								 Float dMIN = Float.parseFloat(strMIN);
 								 dMIN = ConvertFTOC(dMIN);
 								 
 								 wTemp.setTMIN(dMIN);
@@ -102,7 +102,7 @@ public class CsvReader {
 							 {
 								 String strMAX = nextLine[i];
 								 strMAX = ReplaceWhiteSpace(strMAX);
-								 Double  dMAX = Double.parseDouble(strMAX);
+								 Float  dMAX = Float.parseFloat(strMAX);
 								 dMAX = ConvertFTOC(dMAX);
 								 
 								 wTemp.setTMAX(dMAX);
@@ -135,12 +135,12 @@ public class CsvReader {
 		return strTemp.replaceAll("\\s", "");
 	}
 	
-	public Double ConvertFTOC(Double dFarenheit)
+	public Float ConvertFTOC(Float dFarenheit)
 	{
-		Double dResult = 0.0;
+		Float dResult = 0.0f;
 		dResult = (dFarenheit - 30)/2;
 		DecimalFormat newFormat = new DecimalFormat("#.#");
-		dResult =  Double.valueOf(newFormat.format(dResult));
+		dResult =  Float.valueOf(newFormat.format(dResult));
 		return dResult;
 	}
 	
