@@ -13,4 +13,14 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<bean id="loginAction" class="com.groupTen.action.LoginAction">
 		<property name="userService" ref="userService"/>	
 	</bean>
+	<bean id="weatherDao" class="com.groupTen.dao.WeatherDataDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="weatherImportService" class="com.groupTen.service.WeatherImportService">
+		<property name="weatherDao" ref="weatherDao" />
+	</bean>
+	 
+	<bean id="importDataAction" class="com.groupTen.action.ImportDataAction">
+		<property name="importService" ref="weatherImportService"/>	   
+	</bean>
 </beans>

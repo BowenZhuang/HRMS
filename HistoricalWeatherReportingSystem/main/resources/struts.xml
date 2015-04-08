@@ -19,6 +19,12 @@
             <result name="error">userTable.jsp</result>
         </action>
     </package>
+    <package name="import" namespace="/import" extends="hrms" >
+        <action name="import" class="importDataAction" method="execute">
+            <result name="success">listTable.jsp</result>
+            <result name="error">userTable.jsp</result>
+        </action>
+    </package>
     <!-- <package name="reportJson" namespace="/report/json" extends="json-default">
         <action name="testJson" class="testAction">
             <result type="json" name="dataTable">todayTable.jsp</result>
