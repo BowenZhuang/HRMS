@@ -15,7 +15,6 @@ CREATE TABLE IF NOT EXISTS `user`(
 CREATE TABLE IF NOT EXISTS `weather`(
 	`UserID` int REFERENCES `user` (`ID`), 
     `StateCode` int REFERENCES `state`(`ID`),	#ranges 001-465
-	`Division` int,		# 0 indicates area-averaged data
     `Year` int,			
 	`Month` int,
 	`CDD` int,		# cooling days
@@ -37,8 +36,8 @@ INSERT INTO user(`name`,`password`) VALUES ('Becky','1234');
 INSERT INTO user(`name`,`password`) VALUES ('Bowen','1234');
 INSERT INTO user(`name`,`password`) VALUES ('Xiaodong','1234');
 
-INSERT INTO weather VALUES (1,	002,	0,	2005, 12,	0,	660,	0.32,10.3,25.5,17.9);
-INSERT INTO weather VALUES (1,	001,	0,	2014, 01,	48,	1270,	3.32,35.8,59,47.4);
+INSERT INTO weather VALUES (1,	002,	2005, 12,	0,	660,	0.32,10.3,25.5,17.9);
+INSERT INTO weather VALUES (1,	001,	2014, 01,	48,	1270,	3.32,35.8,59,47.4);
 
 INSERT INTO state VALUES (001,'Alabama');
 INSERT INTO state VALUES (002,'Arizona');

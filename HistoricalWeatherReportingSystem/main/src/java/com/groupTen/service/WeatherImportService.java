@@ -25,8 +25,27 @@ public class WeatherImportService {
 		this.weatherDao = weatherDao;
 	}
 	
-	public void insertWeatherData(List<Weather> dataList){
-		weatherDao.insertData(dataList);
+	public void insertWeatherData(List<Weather> dataList,int nUserID){
+		weatherDao.insertData(dataList(),nUserID);
 	}
+	
+	public List<Weather> dataList(){
+		
+		return csvReader.GetWeatherList();
+	}
+	
+	public void LoadWeatherData(String strFilePath)
+	{
+		csvReader.LoadCSVFile(strFilePath);
+	}
+	
+	public boolean CheckUserExist(int nUserID)
+	{
+		boolean bExist = false;
+		//Undo , User exist check through dao.
+		return bExist;
+	}
+	
+	
 	 
 }

@@ -45,8 +45,12 @@ public class ImportDataAction extends ActionSupport{
 	private WeatherImportService importService;
 	
 	public String execute(){
-
-		System.out.println("fileName:"+file.getName());
+		System.out.println("fileName:"+file.getAbsolutePath());
+		int userId = 1; 
+		importService.LoadWeatherData(file.getAbsolutePath());
+		importService.insertWeatherData(importService.dataList(), userId);
+		
+		
 		
 		return "success";
 
