@@ -75,7 +75,7 @@ public class WeatherDataDao extends JdbcDaoSupport {
 	{
 		System.out.println("Dao.checkUserExist");
 		boolean bResult = false;
-		String sql  = "Select count(*) From test.weather where UserID = 1";
+		String sql  = "Select count(*) From test.weather where UserID = " + nUserID;
 		int count = getJdbcTemplate().queryForInt(sql);
 		
 		if(count> 0 )
