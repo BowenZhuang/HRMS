@@ -2,6 +2,7 @@ package com.groupTen.utility;
 
 
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import com.opencsv.CSVReader;
 public class CsvReader {
 	
 	private List<Weather> weathers = new ArrayList<Weather>();
-	public void LoadCSVFile(String filePath)
+	public void LoadCSVFile(File filePath)
 	{
 			weathers.clear();
 		   try {

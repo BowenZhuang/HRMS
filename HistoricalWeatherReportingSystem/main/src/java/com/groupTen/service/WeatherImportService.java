@@ -1,4 +1,5 @@
 package com.groupTen.service;
+import java.io.File;
 import java.util.List;
 
 import com.groupTen.dao.WeatherDataDao;
@@ -34,15 +35,19 @@ public class WeatherImportService {
 		return csvReader.GetWeatherList();
 	}
 	
-	public void LoadWeatherData(String strFilePath)
+	public void LoadWeatherData(File strFilePath)
 	{
 		csvReader.LoadCSVFile(strFilePath);
 	}
 	
 	public boolean CheckUserExist(int nUserID)
 	{
+		
 		boolean bExist = false;
+		
 		//Undo , User exist check through dao.
+		System.out.println("Server.CheckuserExist");
+		bExist = weatherDao.checkUserExist(nUserID);
 		return bExist;
 	}
 	

@@ -50,9 +50,9 @@ public class WeatherDataDao extends JdbcDaoSupport {
 		List<Weather> weathers = new ArrayList<Weather>();
 	
 		List<Map> rows = getJdbcTemplate().queryForList(sql);
+		
 		for (Map row : rows) {
 			Weather weather = new Weather();
-			
 			weather.setStateCode((String)row.get("stateName"));
 			weather.setYear((int)row.get("Year"));
 			weather.setMonth((int)row.get("Month"));
@@ -69,5 +69,20 @@ public class WeatherDataDao extends JdbcDaoSupport {
 		return weathers;
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public boolean checkUserExist(int nUserID)
+	{
+		System.out.println("Dao.checkUserExist");
+		boolean bResult = false;
+		String sql  = "Select count(*) From test.weather where UserID = 1";
+		int count = getJdbcTemplate().queryForInt(sql);
+		
+		if(count> 0 )
+		{
+			bResult = true;
+		}
+		
+		return bResult;
 	}
 }

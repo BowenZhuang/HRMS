@@ -45,10 +45,20 @@ public class ImportDataAction extends ActionSupport{
 	private WeatherImportService importService;
 	
 	public String execute(){
-		System.out.println("fileName:"+file.getAbsolutePath());
+		
 		int userId = 1; 
-		importService.LoadWeatherData(file.getAbsolutePath());
-		importService.insertWeatherData(importService.dataList(), userId);
+		if(importService.CheckUserExist(userId))
+		{
+			System.out.println("UserID have data in database");
+			
+		}
+		else
+		{
+			System.out.println("UserID have not data in database");
+			importService.LoadWeatherData(this.file);
+			importService.insertWeatherData(importService.dataList(), userId);
+		}
+		
 		
 		
 		
