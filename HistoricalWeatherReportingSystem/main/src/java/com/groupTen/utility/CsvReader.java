@@ -61,7 +61,7 @@ public class CsvReader {
 								 Float dPCP = Float.parseFloat(strPCP);
 								 dPCP = (Float)(dPCP * 25.4f);
 								 
-								 DecimalFormat newFormat = new DecimalFormat("#.#");
+								 DecimalFormat newFormat = new DecimalFormat("#.##");
 								 dPCP =  Float.valueOf(newFormat.format(dPCP));
 								 
 								 wTemp.setPCP(dPCP);
