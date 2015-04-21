@@ -1,11 +1,15 @@
 package com.groupTen.action;
 
 import java.io.File;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import com.groupTen.service.WeatherImportService;
 import com.opensymphony.xwork2.ActionSupport;
+import com.groupTen.model.User; 
 
-public class ImportDataAction extends ActionSupport{
+public class ImportDataAction extends ActionSupport implements SessionAware {
 	
 	/**
 	 * 
@@ -14,6 +18,8 @@ public class ImportDataAction extends ActionSupport{
 	
 	private File file;
 	private String contentType;
+	private Map<String,Object> session;
+	
     public String getContentType() {
 		return contentType;
 	}
@@ -46,7 +52,13 @@ public class ImportDataAction extends ActionSupport{
 	
 	public String execute(){
 		
-		int userId = 1; 
+		Object currentUser=this.session.get("User");
+		if(currentUser==null){
+			return "error";
+		}
+		
+		
+		int userId =((User)currentUser).getUserID(); 
 		if(importService.CheckUserExist(userId))
 		{
 			System.out.println("UserID have data in database");
@@ -64,5 +76,10 @@ public class ImportDataAction extends ActionSupport{
 		
 		return "success";
 
+	}
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session=session;
 	}
 }

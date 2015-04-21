@@ -4,14 +4,18 @@ package com.groupTen.action;
 import com.groupTen.model.*;
 import com.groupTen.service.GetDataService;
 
-import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.json.annotations.JSON;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class JsonAction extends ActionSupport{
+public class JsonAction extends ActionSupport implements SessionAware,ServletRequestAware {
 
 	
 	/**
@@ -19,6 +23,8 @@ public class JsonAction extends ActionSupport{
 	 */
 	private static final long serialVersionUID = 1L;
 	private GetDataService dataService;
+	private Map<String,Object> session;
+	private HttpServletRequest request;
 	@JSON(serialize=false)
 	public GetDataService getDataService() {
 		return dataService;
@@ -27,23 +33,39 @@ public class JsonAction extends ActionSupport{
 		this.dataService = dataService;
 	}
 
+	private Chart chart;
 	
-	private List<Weather> weathers;
 	@JSON(name="data")
-	public List<Weather> getWeathers() {
-		return weathers;
+	public Chart getChart() {
+		return chart;
 	}
-	public void setWeathers(List<Weather> weathers) {
-		this.weathers = weathers;
+	public void setChart(Chart chart) {
+		this.chart = chart;
 	}
-	
 	
 	public String execute(){
-
-		int userId = 1;
-		weathers=dataService.findAll(userId);
-
+		
+		//if(session.get("User")==null){
+		//	return Action.ERROR;
+		//}
+		User user=(User)session.get("User");
+		int userId = user.getUserID();
+		String st=this.request.getParameter("st");
+		String dt=this.request.getParameter("dt");
+		String region=this.request.getParameter("region");
+		this.chart=this.dataService.getChart(st, dt, region,userId);	
+		System.out.println(this.chart);
 		return Action.SUCCESS;
 
+	}
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session=session;
+	}
+	@Override
+	public void setServletRequest(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		this.request=request;
 	}
 }

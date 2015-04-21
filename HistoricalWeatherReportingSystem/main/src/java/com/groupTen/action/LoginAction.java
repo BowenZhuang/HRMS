@@ -1,9 +1,13 @@
 package com.groupTen.action;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.groupTen.model.User;
 import com.groupTen.service.UserService;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class LoginAction extends ActionSupport{
+public class LoginAction extends ActionSupport implements SessionAware {
 
 	 
 	/**
@@ -11,6 +15,7 @@ public class LoginAction extends ActionSupport{
 	 */
 	private static final long serialVersionUID = 1L;
 	private UserService userService;
+	private Map<String, Object> session;
 	
 
 	public UserService getUserService() {
@@ -65,8 +70,16 @@ public class LoginAction extends ActionSupport{
 
 	}
 
+	this.session.put("User", u);
+	
 	return "success";
 
+	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session=session;
 	}
 	
 	

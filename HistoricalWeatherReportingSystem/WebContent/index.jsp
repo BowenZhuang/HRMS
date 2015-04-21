@@ -5,31 +5,40 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/sign.css">
+<script src="./javascript/jquery-2.1.3.min.js"></script>
+<script src="./css/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css">
 <title>Login Page</title>
 </head>
+<% 
+	session.removeAttribute("User");
+	session.removeAttribute("currentModel");
+%>
 <body>
-	<s:form action="/user/login">
-	
-	<table width="70%" align="center">
-		<tr>
-			<td> 
-				<s:textfield name="name" label="User name" />
-			</td>
-			 
-		</tr>
-		<tr>
-			<td>
-				<s:textfield name="pwd" label="Password" />
-			</td>
-			 
-		</tr>
-		<tr>
-			<td>
-			 <s:submit value="Submit" />
-			 </td>
-		</tr>
-		
-	</table>
-	</s:form>
+  		<div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>Group<span>Ten</span></div>
+		</div>
+		<br>
+		<div class="login">
+			<form id="login" action="<%=request.getContextPath() %>/user/login" method="post">
+				<input type="text" placeholder="username" name="name" id="name"><br>
+				<input type="password" placeholder="password" name="pwd" id="pwd"><br>
+				<input type="button" value="Login" id="loginButton">
+			</form>
+		</div>
+<script type="text/javascript">
+	$("#loginButton").bind("click",function(){
+		var name= $("#name").val();
+		var pwd=$("#pwd").val();
+		if(name&&pwd){
+			$("#login").submit();
+		}else{
+			alert("Please input name and password");
+		}
+	});
+</script>
 </body>
 </html>

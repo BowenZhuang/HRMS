@@ -2,7 +2,6 @@ package com.groupTen.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import com.groupTen.model.*;
 
 public class WeatherDataDao extends JdbcDaoSupport {
-
+	
 	public void insertData(final List<Weather> dataList,final int userId){
 		 String sql = "INSERT INTO weather" +
 	                "(UserID,StateCode,Year,Month,CDD,HDD,PCP,TMIN,TMAX,TAVG) " +
@@ -44,32 +43,42 @@ public class WeatherDataDao extends JdbcDaoSupport {
 	        } );
 	}
 	
+	
+	
+	private Weather buildWeather(Map row){
+		Weather weather = new Weather();
+		weather.setStateCode(String.valueOf(row.get("stateName")));
+		weather.setYear(Integer.parseInt(String.valueOf(row.get("Year"))));
+		weather.setMonth(Integer.parseInt(String.valueOf(row.get("Month"))));
+		weather.setCDD(Integer.parseInt(String.valueOf(row.get("CDD"))));
+		weather.setHDD(Integer.parseInt(String.valueOf(row.get("HDD"))));
+		weather.setPCP(Float.parseFloat(String.valueOf(row.get("PCP"))));
+		weather.setTMIN(Float.parseFloat(String.valueOf(row.get("TMIN"))));
+		weather.setTMAX(Float.parseFloat(String.valueOf(row.get("TMAX"))));
+		weather.setTAVG(Float.parseFloat(String.valueOf(row.get("TAVG"))));
+		return weather;
+	}
+	
+	
 	public List<Weather> findByUserId(int userId) {
 				
-		String sql = "SELECT UserID, s.stateName, `Year`,`Month`,CDD, HDD,PCP,TMIN,TMAX, TAVG FROM weather JOIN state s ON s.`ID` = weather.stateCode AND UserID = " + userId;
+		String sql = "SELECT UserID, s.stateName, `Year`,`Month`,CDD, HDD,PCP,TMIN,TMAX, TAVG FROM weather JOIN state s ON s.code = weather.stateCode AND UserID = " + userId;
 		List<Weather> weathers = new ArrayList<Weather>();
 	
 		List<Map> rows = getJdbcTemplate().queryForList(sql);
-		
-		for (Map row : rows) {
-			Weather weather = new Weather();
-			weather.setStateCode((String)row.get("stateName"));
-			weather.setYear((int)row.get("Year"));
-			weather.setMonth((int)row.get("Month"));
-			weather.setCDD((int)row.get("CDD"));
-			weather.setHDD((int)row.get("HDD"));
-			weather.setPCP((float)row.get("PCP"));
-			weather.setTMIN((float)row.get("TMIN"));
-			weather.setTMAX((float)row.get("TMAX"));
-			weather.setTAVG((float)row.get("TAVG"));
-			
+		for(Map row:rows){
+			Weather weather=this.buildWeather(row);
 			weathers.add(weather);
 		}
-		
 		return weathers;
-		// TODO Auto-generated method stub
 		
 	}
+	
+	public List<Map> queryBySQL(String sql){
+		System.out.println("execute sql:"+sql);
+		return this.getJdbcTemplate().queryForList(sql);
+	}
+	
 	
 	public boolean checkUserExist(int nUserID)
 	{

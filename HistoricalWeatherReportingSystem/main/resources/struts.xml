@@ -26,18 +26,11 @@
         </action>
     </package>
     <package name="reportJson" namespace="/json" extends="json-default">
-        <action name="getJson" class="jsonAction">
+        <action name="report" class="jsonAction">
             <result type="json" /> 
         </action>
+        <action name="state" class="stateAction">
+        	<result type="json"/>
+        </action>
      </package>
-    <!-- <package name="reportJson" namespace="/report/json" extends="json-default">
-        <action name="testJson" class="testAction">
-            <result type="json" name="dataTable">todayTable.jsp</result>
-            <result type="json" name="pieChart">todayTable.jsp</result>
-        </action>
-        <action name="productUser" class="productUserAction">
-            <result type="json" name="dataTable">todayTable.jsp</result>
-            <result type="json" name="pieChart">source-sign.jsp</result>
-        </action>
-    </package> -->
 </struts>

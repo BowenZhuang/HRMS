@@ -29,4 +29,14 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<bean id="jsonAction" class="com.groupTen.action.JsonAction">
 		<property name="dataService" ref="getDataService"/>	   
 	</bean>
+	
+	<bean id="stateDao" class="com.groupTen.dao.StateDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="stateService" class="com.groupTen.service.StateService">
+		<property name="stateDao" ref="stateDao" />
+	</bean>
+	<bean id="stateAction" class="com.groupTen.action.StateAction">
+		<property name="stateService" ref="stateService"/>	   
+	</bean>
 </beans>
