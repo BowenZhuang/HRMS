@@ -1,4 +1,4 @@
-package com.groupTen.service;
+﻿package com.groupTen.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +20,11 @@ public class GetDataService {
 		this.weatherDao = weatherDao;
 	}
 
-	
+	// st: series ie. PCP
+	// dt: dataType ie. year
+	// 
 	public Chart getChart(String st,String dt,String region,int userId){
+		
 		System.out.println("query user chart: st:"+st+" dt:"+dt+" region:"+region+" userId:"+userId);
 		Chart chart=null;
 		StringBuilder selectedSQL=new StringBuilder();
@@ -37,7 +40,7 @@ public class GetDataService {
 				selectedSQL.append("select d.year year,d.quarter quarter");
 				builder.append(" from test.year_month d left join weather w on d.year=w.Year and d.month=w.Month ");
 			}
-			builder.append(" left join state s on s.code=w.stateCode ");
+			builder.append(" join state s on s.code=w.stateCode ");
 		}
 		
 		if(region!=null&&region.length()>0&&region!="-1"){
@@ -96,6 +99,8 @@ public class GetDataService {
 			for(Map map:data){
 				String year=String.valueOf(map.get("year"));
 				String pcp=String.valueOf(map.get("pcp"));
+				
+				// add dates to xAxis
 				if(xAxis.size()<=data.size()){
 					if(dt!=null&&dt.length()>0){
 						if(dt.equals("Monthly")){
@@ -107,14 +112,19 @@ public class GetDataService {
 					xAxis.add(year);
 				}
 				
+				
+				// add pcp data to plot
 				if(pcp.equals("null")){
 					serieMin.addData(0.0);
 				}else{
 					serieMin.addData(Double.parseDouble(pcp));
 				}
 			}
+			// add plot to series
 			series.add(serieMin);
 		}
+		
+		// set series and axis to chart
 		chart.setxAxis(xAxis);
 		chart.setSeries(series);
 		return chart;
@@ -197,16 +207,18 @@ public class GetDataService {
 					}
 					xAxis.add(year);
 				}
-				
+				// add pcp data to plot				
 				if(temperature.equals("null")){
 					serieMin.addData(0.0);
 				}else{
 					serieMin.addData(Double.parseDouble(temperature));
 				}
 			}
+			// add plot to series
 			series.add(serieMin);
 			index++;
 		}
+		// set series and axis to chart
 		chart.setxAxis(xAxis);
 		chart.setSeries(series);
 		return chart;
