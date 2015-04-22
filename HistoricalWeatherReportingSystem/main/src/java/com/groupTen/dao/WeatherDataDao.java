@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -88,7 +89,6 @@ public class WeatherDataDao extends JdbcDaoSupport {
 		String sql  = "Select count(*) From test.weather where UserID = " + nUserID;
 		int count = getJdbcTemplate().queryForInt(sql);
 		
-		System.out.println("Dao.checkUserExist :: " + count);
 		if(count> 0 )
 		{
 			bResult = true;
@@ -116,6 +116,4 @@ public class WeatherDataDao extends JdbcDaoSupport {
 		return bResult;
 	
 	}
-	
-	
 }

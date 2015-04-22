@@ -54,7 +54,6 @@ public class JsonAction extends ActionSupport implements SessionAware,ServletReq
 		String dt=this.request.getParameter("dt");
 		String region=this.request.getParameter("region");
 		this.chart=this.dataService.getChart(st, dt, region,userId);	
-		System.out.println(this.chart);
 		return Action.SUCCESS;
 
 	}

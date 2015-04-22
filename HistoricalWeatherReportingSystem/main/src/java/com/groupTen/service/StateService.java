@@ -19,4 +19,9 @@ public class StateService {
 	public List<State> queryAllStates(String query){
 		return this.stateDao.getStates(query);
 	}
+	
+	public List<State> getAllStates(){
+		return this.stateDao.getStates();
+	}
+	 
 }

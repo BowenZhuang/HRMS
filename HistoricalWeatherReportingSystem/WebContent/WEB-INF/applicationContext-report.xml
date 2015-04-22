@@ -39,4 +39,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<bean id="stateAction" class="com.groupTen.action.StateAction">
 		<property name="stateService" ref="stateService"/>	   
 	</bean>
+	<bean id="regionAction" class="com.groupTen.action.GetRegionAction">
+		<property name="stateService" ref="stateService"/>	   
+	</bean>
+	<bean id="checkUserAction" class="com.groupTen.action.CheckUserAction">
+		<property name="service" ref="weatherImportService"/>	   
+	</bean>
 </beans>

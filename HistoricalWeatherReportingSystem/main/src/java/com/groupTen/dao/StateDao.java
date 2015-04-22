@@ -27,4 +27,19 @@ public class StateDao extends JdbcDaoSupport {
 		}
 		return states;
 	}
+	
+	public List<State> getStates(){
+		List<State> states=new ArrayList<State>();
+		String sql ="select * from state";
+		System.out.println("sql: "+ sql);
+		List<Map> rows = getJdbcTemplate().queryForList(sql);
+		for(Map row:rows){
+			State state=this.buildState(row);
+			states.add(state);
+		}
+		return states;
+	}
+
+
+	 
 }

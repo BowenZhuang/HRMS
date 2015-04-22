@@ -24,13 +24,40 @@
 </div>
 <div id="section">
 <h2>Welcome to Reporting System</h2>
-<s:form action="/import/import" enctype="multipart/form-data">
-	<s:file name="file" label="File"/>
-	<s:submit value="Submit" />
+<s:form id="form" action="/import/import" enctype="multipart/form-data">
+	<s:file name="file" label="File" accept=".csv"/>
 </s:form>
+<br/>
+	<input type="button" id="checkButton" value="OK">
 </div>
 <div id="footer">
 <jsp:include page="/template/footer.jsp"></jsp:include>
 </div>
+
+<script type="text/javascript">
+	$("#checkButton").bind("click",function(){
+		$.getJSON("<%=request.getContextPath()%>/json/checkUser",  
+				function( result ) {
+					if($("#import_file").val()==""){
+						alert("Please choose a file.");
+						return;
+					}
+					if(result.exist){
+						if(confirm('There already exists weather data, do you want to overwrite them?')){
+							$.getJSON('<%=request.getContextPath()%>/json/deleteUserData',
+							function(result){
+								if(result.delete){
+									$("#form").submit();
+								}	
+							});
+						}
+					}else{
+						//alert("submit");
+						$("#form").submit();
+					}
+					
+				});
+	});
+</script>
 </body>
 </html>

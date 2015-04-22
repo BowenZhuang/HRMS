@@ -32,5 +32,14 @@
         <action name="state" class="stateAction">
         	<result type="json"/>
         </action>
+        <action name="region" class="regionAction">
+        	<result type="json"/>
+        </action>
+        <action name="checkUser" class="checkUserAction" >
+        	<result type="json"/>
+        </action>
+        <action name="deleteUserData" class="checkUserAction" method="Overwrite">
+        	<result type="json"/>
+        </action>
      </package>
 </struts>

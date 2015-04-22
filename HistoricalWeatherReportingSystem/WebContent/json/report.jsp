@@ -52,7 +52,11 @@ $(function() {
 			</td>
 			<td width="30%">
 				<label for="region">Region: </label>
-  				<input id="region">
+				<!--
+  				<input id="region"> -->
+  				<select name="region" id="region">
+				     
+				</select>
 			</td>
 			<td width="5%" align="left">
 				<input type="button" value="query" id="query"/>
@@ -69,18 +73,22 @@ $(function() {
 </div>
 <script type="text/javascript">
 $(function () {
-	
+	$("#region").append($('<option/>', { 
+        value: -1,
+        text : 'Select a state' 
+    }));
 	$("input[type=button]").button();
-	
-	$( "#region" ).autocomplete({
-	      source: "<%=request.getContextPath()%>/json/state",
-	      minLength: 2,
-	      select: function( event, ui ) {
-	        log( ui.item ?
-	          "Selected: " + ui.item.value + " aka " + ui.item.id :
-	          "Nothing selected, input was " + this.value );
-	      }
-	});
+	$.getJSON("<%=request.getContextPath()%>/json/region",  
+			function( result ) {
+				var i;
+				for (i = 0; i < result.states.length; ++i) {
+					$("#region").append($('<option/>', { 
+				        value: result.states[i].code,
+				        text : result.states[i].stateName 
+				    }));
+				} 
+			});
+	 
 	
 	//prepare query condition
 	$("#query").bind("click",function(){

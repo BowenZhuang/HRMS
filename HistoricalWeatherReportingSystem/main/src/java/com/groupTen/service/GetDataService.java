@@ -40,7 +40,7 @@ public class GetDataService {
 			builder.append(" left join state s on s.code=w.stateCode ");
 		}
 		
-		if(region!=null&&region.length()>0){
+		if(region!=null&&region.length()>0&&region!="-1"){
 			builder.append(" and s.code='"+region+"'");
 		}
 		if(userId>0){
