@@ -58,10 +58,14 @@ public class ImportDataAction extends ActionSupport implements SessionAware {
 		}
 		
 		
-		int userId =((User)currentUser).getUserID(); 
+		int userId =((User)currentUser).getUserID();
+		System.out.println("UserID"+userId);
 		if(importService.CheckUserExist(userId))
 		{
+			
 			System.out.println("UserID have data in database");
+			importService.deleteDataWithExistingUser(userId);
+			
 			
 		}
 		else

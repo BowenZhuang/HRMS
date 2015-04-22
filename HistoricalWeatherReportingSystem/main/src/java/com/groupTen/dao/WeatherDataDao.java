@@ -2,6 +2,7 @@ package com.groupTen.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +88,7 @@ public class WeatherDataDao extends JdbcDaoSupport {
 		String sql  = "Select count(*) From test.weather where UserID = " + nUserID;
 		int count = getJdbcTemplate().queryForInt(sql);
 		
+		System.out.println("Dao.checkUserExist :: " + count);
 		if(count> 0 )
 		{
 			bResult = true;
@@ -94,4 +96,26 @@ public class WeatherDataDao extends JdbcDaoSupport {
 		
 		return bResult;
 	}
+	
+	public boolean deleteDataForExistingUser(int nUserID)
+	{
+		System.out.println("Delete Data For Existing User");
+		boolean bResult = false;
+		
+		String	sql = " Delete from test.weather where UserID = ?";
+	
+		Object[] params = {nUserID};
+		int[] types = {Types.BIGINT};
+		int count = getJdbcTemplate().update(sql, params, types);
+		
+		if(count > 0)
+		{
+			bResult  = true;
+		}
+		
+		return bResult;
+	
+	}
+	
+	
 }
