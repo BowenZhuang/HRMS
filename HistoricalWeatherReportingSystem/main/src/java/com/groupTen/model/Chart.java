@@ -6,8 +6,6 @@ public class Chart {
 
 	private String title;
 	
-	private List<String> xAxis;
-	
 	private String yAxisTitle;
 	
 	private List<Serie> series;
@@ -18,14 +16,6 @@ public class Chart {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public List<String> getxAxis() {
-		return xAxis;
-	}
-
-	public void setxAxis(List<String> xAxis) {
-		this.xAxis = xAxis;
 	}
 
 	public String getyAxisTitle() {

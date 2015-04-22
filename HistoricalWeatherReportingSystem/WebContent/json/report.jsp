@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../css/jquery-ui-1.11.4.custom/jquery-ui.min.css">
 <script src="../javascript/jquery-2.1.3.min.js"></script>
 <script src="../css/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
-<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/stock/highstock.js"></script>
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <script>
 $(function() {
@@ -98,22 +98,21 @@ $(function () {
 		$.getJSON("<%=request.getContextPath()%>/json/report", 
 			{"st":st,"dt":dt,"region":region},
 			function( result ) {
-				 var data=result.data;
+				var data=result.data;
 				 var title=data.title;
 				 var yAxisTitle=data.yAxisTitle;
 				 var series=data.series;
-				 var categories=data.xAxis;
-				 $('#container').highcharts({
+				 $('#container').highcharts("StockChart",{
 				        title: {
 				            text: title,
 				            x: -20 //center
 				        },
+				        rangeSelector : {
+			                selected : 1
+			            },
 				        subtitle: {
 				            text: 'Source: Historical Weather Database',
 				            x: -20
-				        },
-				        xAxis: {
-				            categories: categories
 				        },
 				        yAxis: {
 				            title: {
@@ -124,9 +123,6 @@ $(function () {
 				                width: 1,
 				                color: '#808080'
 				            }]
-				        },
-				        tooltip: {
-				            valueSuffix: '°C'
 				        },
 				        legend: {
 				            layout: 'vertical',

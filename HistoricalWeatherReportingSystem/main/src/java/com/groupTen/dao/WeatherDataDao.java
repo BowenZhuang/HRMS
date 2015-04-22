@@ -2,13 +2,11 @@ package com.groupTen.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.sql.Types;
-import java.util.HashMap;
-
-
 
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -17,14 +15,12 @@ import com.groupTen.model.*;
 
 public class WeatherDataDao extends JdbcDaoSupport {
 	
-	public boolean insertData(final List<Weather> dataList,final int userId){
-		
-		boolean ret = true;
-		
+	public void insertData(final List<Weather> dataList,final int userId){
 		 String sql = "INSERT INTO weather" +
 	                "(UserID,StateCode,Year,Month,CDD,HDD,PCP,TMIN,TMAX,TAVG) " +
 	                "VALUES(?,?,?,?,?,?,?,?,?,?)";
-		 int result[] = getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter(){
+	         
+	        getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter(){
 	            @Override
 	            public int getBatchSize() {
 	                return dataList.size();
@@ -47,17 +43,7 @@ public class WeatherDataDao extends JdbcDaoSupport {
 				
 	            
 	        } );
-		 
-		 for (int rowResult : result){
-			 if (rowResult == 0){
-				 
-				 ret = false;    // return when one row is not inserted properly
-			 }
-		 }
-		 
-		 return ret;
 	}
-	
 	
 	
 	
@@ -110,8 +96,6 @@ public class WeatherDataDao extends JdbcDaoSupport {
 		
 		return bResult;
 	}
-
-
 	
 	public boolean deleteDataForExistingUser(int nUserID)
 	{
