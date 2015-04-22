@@ -51,6 +51,17 @@ public class WeatherImportService {
 		return bExist;
 	}
 	
+	public boolean deleteDataWithExistingUser(int nUserID)
+	{
+		boolean bResult = false;
+		
+		System.out.println("Server.Delete Data for Existing User");
+		
+		bResult = weatherDao.deleteDataForExistingUser(nUserID);
+		return bResult;
+		
+	}
+	
 	
 	 
 }
