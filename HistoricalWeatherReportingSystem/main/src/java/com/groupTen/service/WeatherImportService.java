@@ -27,8 +27,7 @@ public class WeatherImportService {
 	}
 	
 	public boolean insertWeatherData(List<Weather> dataList,int nUserID){
-		boolean ret = weatherDao.insertData(dataList(),nUserID);
-		return ret;
+		return weatherDao.insertData(dataList(),nUserID);
 	}
 	
 	public List<Weather> dataList(){

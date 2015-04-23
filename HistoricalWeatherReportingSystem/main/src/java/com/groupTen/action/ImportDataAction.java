@@ -1,12 +1,14 @@
 package com.groupTen.action;
 
 import java.io.File;
+import java.util.Date;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.groupTen.service.WeatherImportService;
-import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ActionSupport; 
 import com.groupTen.model.User; 
 
 public class ImportDataAction extends ActionSupport implements SessionAware {
@@ -19,7 +21,8 @@ public class ImportDataAction extends ActionSupport implements SessionAware {
 	private File file;
 	private String contentType;
 	private Map<String,Object> session;
-	
+	static Logger log = Logger.getLogger(ImportDataAction.class);
+	static String appName = "HWRS";
     public String getContentType() {
 		return contentType;
 	}
@@ -67,9 +70,35 @@ public class ImportDataAction extends ActionSupport implements SessionAware {
 		else
 		{
 			System.out.println("UserID have not data in database");
-			importService.LoadWeatherData(this.file);
-			importService.insertWeatherData(importService.dataList(), userId);
-		}
+			Date time;
+			boolean csvParseResult = importService.LoadWeatherData(this.file);
+						
+						// csv parsing fail
+						if (!csvParseResult){
+							time = new Date();													//log:  FAIL to parse csv
+							log.info(appName + ":/t" +  time.toString() + ": The user '" + ((User)currentUser).getUsrName() + "' Attempted ETL; Result: Fail to parse the csv file;");
+							return "error";
+						}
+						
+						
+						// csv parsing success
+						if (csvParseResult){
+							boolean dbResult = importService.insertWeatherData(importService.dataList(), userId);
+							
+							if (dbResult){
+								time = new Date();													//log: SUCCESS  inserted every row
+								log.info(appName + ":/t" +  time.toString() + ": The user '" + ((User)currentUser).getUsrName() + "' Attempted ETL; Result: SUCCESS;");
+								
+								time = new Date();													
+								log.info(appName + ":/t" +  time.toString() + ": ETL completed;");
+								
+							}else{
+								time = new Date();													//log: FAIL at least one row is not inserted
+								log.info(appName + ":/t" +  time.toString() + ": The user '" + ((User)currentUser).getUsrName() + "' Attempted ETL; Result: FAIL;");
+								
+							}	
+						}
+					}
 		
 		
 		

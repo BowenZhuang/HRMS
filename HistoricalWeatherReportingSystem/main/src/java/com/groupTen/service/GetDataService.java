@@ -38,7 +38,7 @@ public class GetDataService {
 				selectedSQL.append("select d.year year,d.quarter quarter");
 				builder.append(" from test.year_month d  join weather w on d.year=w.Year and d.month=w.Month ");
 			}
-			builder.append(" left join state s on s.code=w.stateCode ");
+			builder.append(" join state s on s.code=w.stateCode ");
 		}
 		
 		if(region!=null&&region.length()>0&&!region.equals("-1")){
@@ -155,8 +155,8 @@ public class GetDataService {
 	
 	public Chart getCHDDChart(String[] sqls,String dt){
 		Chart chart=new Chart();
-		chart.setTitle(dt+" Temperature");
-		chart.setyAxisTitle("Temperature (°C)");
+		chart.setTitle(dt+" Days");
+		chart.setyAxisTitle("Days");
 		List<Serie> series=new ArrayList<Serie>();
 		int index=0;
 		for(String sql:sqls){
@@ -190,7 +190,7 @@ public class GetDataService {
 					Double[] values={new Double(time),Double.parseDouble(temperature)};
 					serie.addData(values);
 				}
-				serie.setUnit("°C");
+				serie.setUnit("Days");
 			}
 			series.add(serie);
 			index++;
@@ -203,7 +203,7 @@ public class GetDataService {
 	public Chart getTemperatureChart(String[] sqls,String dt){
 		Chart chart=new Chart();
 		chart.setTitle(dt+" Temperature");
-		chart.setyAxisTitle("Temperature (°C)");
+		chart.setyAxisTitle("Temperature (�C)");
 		List<Serie> series=new ArrayList<Serie>();
 		
 		int index=0;

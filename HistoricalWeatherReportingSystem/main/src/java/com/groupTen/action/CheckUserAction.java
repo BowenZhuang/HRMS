@@ -1,7 +1,9 @@
 package com.groupTen.action;
 
+import java.util.Date;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.apache.struts2.json.annotations.JSON;
 
@@ -15,6 +17,8 @@ public class CheckUserAction extends ActionSupport implements SessionAware{
 	private static final long serialVersionUID = -1779270090476899134L;
 	private WeatherImportService service;
 	private Map<String,Object> session;
+	static Logger log = Logger.getLogger(CheckUserAction.class);
+	static String appName = "HWRS";
 	private boolean isExist = false;
 	private boolean isDelete = false;
 	public boolean isExist() {
@@ -40,24 +44,26 @@ public class CheckUserAction extends ActionSupport implements SessionAware{
 		if(user!=null){
 			int userId = user.getUserID();
 			this.isExist = service.CheckUserExist(userId);
-			return Action.SUCCESS;
-		}else{
-			return Action.LOGIN;
-		}
-		
+			Date time = new Date();													//log data existing
+			log.info(appName + ":/t" +  time.toString() + ": The user '" + ((User)user).getUsrName() + "' has data existing in the database;");
+			
+		} 
+		return Action.SUCCESS;
 
 	}
 	
 	public String Overwrite(){
-		 
+		
 		User user=(User)session.get("User");
 		if(user!=null){
 			int userId = user.getUserID();
 			this.isDelete = service.deleteDataWithExistingUser(userId);
-			return Action.SUCCESS;
-		}else{
-			return Action.LOGIN;
-		}
+			Date time = new Date();	
+			log.info(appName + ":/t" +  time.toString() + ": The user '" + ((User)user).getUsrName() + "' has agreed to overwrite their dababase data using the uploaded file;");
+		 
+		} 
+		return Action.SUCCESS;
+		 
 		
 
 	}

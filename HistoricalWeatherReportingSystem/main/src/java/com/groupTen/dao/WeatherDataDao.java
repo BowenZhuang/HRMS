@@ -15,12 +15,12 @@ import com.groupTen.model.*;
 
 public class WeatherDataDao extends JdbcDaoSupport {
 	
-	public void insertData(final List<Weather> dataList,final int userId){
+	public boolean insertData(final List<Weather> dataList,final int userId){
 		 String sql = "INSERT INTO weather" +
 	                "(UserID,StateCode,Year,Month,CDD,HDD,PCP,TMIN,TMAX,TAVG) " +
 	                "VALUES(?,?,?,?,?,?,?,?,?,?)";
-	         
-	        getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter(){
+		 	boolean ret = true;
+		 	int result[] =getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter(){
 	            @Override
 	            public int getBatchSize() {
 	                return dataList.size();
@@ -43,6 +43,15 @@ public class WeatherDataDao extends JdbcDaoSupport {
 				
 	            
 	        } );
+		 	
+		 	for (int rowResult : result){
+				 if (rowResult == 0){
+					 
+					 ret = false;    // return when one row is not inserted properly
+				 }
+			 }
+			 
+			 return ret;
 	}
 	
 	

@@ -50,6 +50,7 @@ public class JsonAction extends ActionSupport implements SessionAware,ServletReq
 		//}
 		User user=(User)session.get("User");
 		int userId = user.getUserID();
+		
 		String st=this.request.getParameter("st");
 		String dt=this.request.getParameter("dt");
 		String region=this.request.getParameter("region");
