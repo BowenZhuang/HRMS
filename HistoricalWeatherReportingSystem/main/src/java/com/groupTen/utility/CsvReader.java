@@ -1,3 +1,10 @@
+//FILE          : ScvReader.java
+//PROJECT       : ASQL - HWRS_ETL_DataVisualization
+//PROGRAMMER    : Bowen Zhuang, Linyan Li, Xiaodong Meng
+//FIRST VERSION : 2015-04-23
+//DESCRIPTION   : This is a utility class that is used by the WeatherImportService classes to extracted and transform the data in CSV file to load the database
+//
+
 package com.groupTen.utility;
 
 

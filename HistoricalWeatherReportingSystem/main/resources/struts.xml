@@ -5,7 +5,7 @@
     <constant name="struts.custom.i18n.resources" value="messageResource"/>
     <constant name="struts.i18n.encoding" value="utf-8"/>
     <constant name="struts.ui.theme" value="xhtml"/> 
-    <constant name="struts.multipart.saveDir" value="C:\Users\Bowem\Documents\HRMS\HRMS" />
+ <!-- <constant name="struts.multipart.saveDir" value="C:\Users\Bowem\Documents\HRMS\HRMS" /> -->   
     <package name="hrms" namespace="/" extends="struts-default">
         <global-results>
             <result name="error">error.jsp</result>

@@ -1,3 +1,10 @@
+//FILE          : GetRegionAction.java
+//PROJECT       : ASQL - HWRS_ETL_DataVisualization
+//PROGRAMMER    : Bowen Zhuang, Linyan Li, Xiaodong Meng
+//FIRST VERSION : 2015-04-23
+//DESCRIPTION   : This is the action class which deals with http request call service layer, the session and the data service 
+//				  to collect user's selection and get the right data loaded to the chart
+//
 package com.groupTen.action;
  
 

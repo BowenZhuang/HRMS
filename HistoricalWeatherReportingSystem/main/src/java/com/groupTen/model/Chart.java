@@ -1,3 +1,10 @@
+//FILE          : Chart.java
+//PROJECT       : ASQL - HWRS_ETL_DataVisualization
+//PROGRAMMER    : Bowen Zhuang, Linyan Li, Xiaodong Meng
+//FIRST VERSION : 2015-04-23
+//DESCRIPTION   : This is the POJO of chart data 
+//
+
 package com.groupTen.model;
 
 import java.util.List;

@@ -1,3 +1,10 @@
+//FILE          : CheckUserAction.java
+//PROJECT       : ASQL - HWRS_ETL_DataVisualization
+//PROGRAMMER    : Bowen Zhuang, Linyan Li, Xiaodong Meng
+//FIRST VERSION : 2015-04-23
+//DESCRIPTION   : This is the action class which deals with http request call service layer and the weather import service 
+//					logic to check if the user has existing data in the database
+//
 package com.groupTen.action;
 
 import java.util.Date;

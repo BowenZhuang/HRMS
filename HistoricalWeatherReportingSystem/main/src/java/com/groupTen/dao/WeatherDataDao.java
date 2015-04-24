@@ -1,3 +1,13 @@
+//FILE          : WeatherDataDao.java
+//PROJECT       : ASQL - HWRS_ETL_DataVisualization
+//PROGRAMMER    : Bowen Zhuang, Linyan Li, Xiaodong Meng
+//FIRST VERSION : 2015-04-23
+//DESCRIPTION   : This is the data access object class which connects to database to do sql query search to:
+//					- get the required weather data by userId
+//					- load database with new weather data
+//					- purge the existing weather data of a particular user to get ready for new weather data
+//					- check the database to see a particular use has existing data in the database
+//
 package com.groupTen.dao;
 
 import java.sql.PreparedStatement;

@@ -1,3 +1,9 @@
+//FILE          : StateDao.java
+//PROJECT       : ASQL - HWRS_ETL_DataVisualization
+//PROGRAMMER    : Bowen Zhuang, Linyan Li, Xiaodong Meng
+//FIRST VERSION : 2015-04-23
+//DESCRIPTION   : This is the data access object class which connects to database to do sql query search to get the required state names
+//
 package com.groupTen.dao;
 
 import java.util.ArrayList;

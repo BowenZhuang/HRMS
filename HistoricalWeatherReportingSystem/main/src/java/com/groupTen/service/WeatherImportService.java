@@ -1,3 +1,11 @@
+//FILE          : WeatherImportService.java
+//PROJECT       : ASQL - HWRS_ETL_DataVisualization
+//PROGRAMMER    : Bowen Zhuang, Linyan Li, Xiaodong Meng
+//FIRST VERSION : 2015-04-23
+//DESCRIPTION   : This is a service layer class that is used by the action classes to interact with the Data Access Object Classes.
+//					It is used to load database with the user's upload
+//
+
 package com.groupTen.service;
 import java.io.File;
 import java.util.List;
